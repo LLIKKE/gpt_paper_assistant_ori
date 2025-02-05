@@ -226,7 +226,7 @@ if __name__ == "__main__":
         author_names, author_ids = parse_authors(fopen.readlines())
     author_id_set = set(author_ids)
 
-    papers = [] #list(get_papers_from_arxiv(config))
+    papers = list(get_papers_from_arxiv(config))#[:3]
     # dump all papers for debugging
 
     all_authors = set()

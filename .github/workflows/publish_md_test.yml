@@ -64,7 +64,7 @@ jobs:
 
       - name: Generate navigation index
         run: |
-          current_date=$(date "+%Y-%m-%d %H:%M:%S")
+          current_date=$(TZ="Asia/Shanghai" date "+%Y-%m-%d %H:%M:%S")
           
           echo "<!DOCTYPE html>" > dist/index.html
           echo "<html lang=\"en\">" >> dist/index.html
@@ -76,7 +76,7 @@ jobs:
           echo "</head>" >> dist/index.html
           echo "<body>" >> dist/index.html
           echo "    <h1>GPT Paper Assistant</h1>" >> dist/index.html
-          echo "    <p>Current Date and Time: $current_date</p>" >> dist/index.html
+          echo "    <p>Update Date and Time: $current_date</p>" >> dist/index.html
 
           echo "    <p>Welcome to the Arxiv Paper Assistant! Please select a language:</p>" >> dist/index.html
           echo "    <ul>" >> dist/index.html
