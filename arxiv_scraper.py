@@ -100,6 +100,7 @@ def get_papers_from_arxiv_rss(area: str, config: Optional[dict]) -> Tuple[
         f"https://export.arxiv.org/rss/{area}",  # 使用 HTTPS
         modified=updated_string
     )  # modified 参数用于向服务器传递上一次的更新时间（updated_string）
+    #print(feed)
     logging.info(f"Feed Status: {feed.status}")
     logging.info(f"Feed entries count: {len(feed.entries)}")
 

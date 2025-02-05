@@ -214,7 +214,7 @@ if __name__ == "__main__":
     config.read("configs/config.ini")
 
     S2_API_KEY = os.environ.get("S2_KEY")
-    OAI_KEY = os.environ.get("OAI_KEY")
+    OAI_KEY = "sk-7f955bffa0a9492f99e0579756ba321b"#os.environ.get("OAI_KEY")
     if OAI_KEY is None:
         raise ValueError(
             "OpenAI key is not set - please set OAI_KEY to your OpenAI key"
@@ -226,7 +226,7 @@ if __name__ == "__main__":
         author_names, author_ids = parse_authors(fopen.readlines())
     author_id_set = set(author_ids)
 
-    papers = list(get_papers_from_arxiv(config))[:0]
+    papers = [] #list(get_papers_from_arxiv(config))
     # dump all papers for debugging
 
     all_authors = set()
@@ -281,7 +281,7 @@ if __name__ == "__main__":
         print(selected_papers)
 
     # pick endpoints and push the summaries
-    if len(papers) > 0:
+    if True:
         if config["OUTPUT"].getboolean("dump_json"):
             with open(config["OUTPUT"]["output_path"] + "output.json", "w") as outfile:
                 json.dump(selected_papers, outfile, indent=4)
