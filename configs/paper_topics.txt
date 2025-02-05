@@ -1,0 +1,10 @@
+ 1. New advancements in quantization techniques for large language models
+    - Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like knowledge distillation or optimization techniques, such as those leveraging tensor decomposition or pruning, is particularly relevant.
+    - Not relevant: Papers that primarily focus on the application of quantization in unrelated fields, or papers that only discuss simple, traditional quantization techniques without introducing new methodological advancements.
+ 2. Novel methods for distilling large language models using Optimal Transport (OT) or tokenizer-based approaches
+    - Relevant: Papers that explore the use of Optimal Transport (OT) or tokenizer-based methods for distilling large language models. This includes using OT to match distributions of logits or embeddings between teacher and student models, or leveraging novel tokenizer techniques to better transfer knowledge from larger models to smaller, more efficient models. Research that investigates how tokenization or dynamic tokenizers can aid in distillation processes to improve the efficiency and accuracy of the distilled models is highly relevant.
+    - Not relevant: Papers that only focus on traditional distillation methods without introducing novel techniques such as OT or tokenizer optimizations, or papers focused on non-language model distillation.
+
+ In suggesting papers to your friend, remember that he enjoys papers on statistical machine learning, and generative modeling in natural language processing.
+ Your friend also likes learning about surprising empirical results in language models, as well as clever statistical tricks.
+ He does not want to read papers that are about primarily applications of methods to specific domains.

@@ -1,0 +1,95 @@
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - "main"  # Notice the list format here, using '-' for each branch
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read   # Grants read access to repository contents
+  pages: write     # Grants write access to GitHub Pages
+  id-token: write  # Grants write access to id-token for authentication
+
+concurrency:
+  group: "pages"  # Ensures that only one deployment is running at a time
+  cancel-in-progress: false  # Ensures the current job will not be canceled if a new one is triggered
+
+jobs:
+  deploy:
+    # Define the environment for deployment (GitHub Pages)
+    environment:
+      name: github-pages
+
+    # The job runs on the latest Ubuntu environment
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Checks out the repository so that the workflow can access its contents
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # Replace with your desired Python version
+
+      # Step 3: Install dependencies from requirements.txt (if Python project)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Upgrades pip to the latest version
+          pip install -r requirements.txt     # Installs the dependencies listed in the requirements.txt file
+
+      # Step 4: Set environment variables (use secrets for sensitive data)
+      - name: Set environment variables
+        run: echo "OAI_KEY=${{ secrets.OAI_KEY }}" >> $GITHUB_ENV  # Adds secret OAI_KEY to the GitHub environment
+
+      # Step 5: Run the arxiv_scraper.py script
+      - name: Run arxiv_scraper.py to fetch papers
+        run: |
+          python arxiv_scraper.py  # This script will scrape the papers from arXiv
+
+      # Step 6: Run filter_papers.py to filter the papers
+      - name: Run filter_papers.py to filter scraped papers
+        run: |
+          python filter_papers.py  # Filters the papers based on your criteria
+
+      # Step 7: Run main.py to generate the output
+      - name: Run main.py to process filtered papers and generate output
+        run: |
+          python main.py  # Main program that processes the filtered papers and generates the output
+
+      # Step 8: Run parse_json_to_md.py to convert the JSON output into Markdown
+      - name: Run parse_json_to_md.py to convert JSON to markdown
+        run: |
+          python parse_json_to_md.py  # Converts JSON output into markdown files
+
+      # Step 9: Run push_to_slack.py to send notifications to Slack (optional, if necessary)
+      - name: Run push_to_slack.py to send notifications
+        run: |
+          python push_to_slack.py  # Optionally send a Slack notification after deployment
+
+      # Step 10: List the files generated in the 'out' folder
+      - name: List output files
+        run: ls -alh ./out  # Verifies that the expected output files are generated in the 'out' folder
+
+      # Step 11: Upload the generated output as an artifact to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './out'  # Specifies the directory containing the output files to be uploaded
+
+      # Step 12: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4  # This action deploys the artifact to GitHub Pages
+
+      # Step 13: Verify Pages deployment and output the deployment URL
+      - name: Verify Pages deployment
+        run: |
+          echo "Deployment URL: https://<your-username>.github.io/<repository-name>/"  # Prints the deployment URL
+

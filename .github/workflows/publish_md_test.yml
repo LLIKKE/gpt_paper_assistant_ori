@@ -1,0 +1,113 @@
+name: Publish output MD to GitHub Pages
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Run daily arxiv"] # 这个工作流会在Run daily arxiv完成后被触发，Run daily arxiv又是每天定时触发，从而让这个定时触发
+    types:
+      - completed
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 检出代码
+      - uses: actions/checkout@v4
+
+      # 下载生成的 Artifact
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v4
+        with:
+          workflow: cron_runs.yaml
+          workflow_conclusion: success
+          name: arxiv-scanner-outputs
+
+
+      # 检查 output.md 和 output_translated.md 是否存在
+      - name: Check for output files
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: output.md,output_translated.md
+
+      # 确保输出目录和语言子目录存在
+      - name: Ensure dist directories exist
+        run: |
+          mkdir -p dist/en
+          mkdir -p dist/zh
+
+      # 转换英文版本的 output.md 为网页
+      - name: Convert English version to pages
+        uses: wranders/markdown-to-pages-action@v0.1
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          file: output.md
+          out-path: dist/en
+          out-path-not-empty: true
+
+      # 转换中文版本的 output_translated.md 为网页
+      - name: Convert Chinese version to pages
+        uses: wranders/markdown-to-pages-action@v0.1
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          file: output_translated.md
+          out-path: dist/zh
+          out-path-not-empty: true
+
+      - name: Generate navigation index
+        run: |
+          current_date=$(date "+%Y-%m-%d %H:%M:%S")
+          
+          echo "<!DOCTYPE html>" > dist/index.html
+          echo "<html lang=\"en\">" >> dist/index.html
+          echo "<head>" >> dist/index.html
+          echo "    <meta charset=\"UTF-8\">" >> dist/index.html
+          echo "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" >> dist/index.html
+          echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" >> dist/index.html
+          echo "    <title>GPT Paper Assistant</title>" >> dist/index.html
+          echo "</head>" >> dist/index.html
+          echo "<body>" >> dist/index.html
+          echo "    <h1>GPT Paper Assistant</h1>" >> dist/index.html
+          echo "    <p>Current Date and Time: $current_date</p>" >> dist/index.html
+
+          echo "    <p>Welcome to the Arxiv Paper Assistant! Please select a language:</p>" >> dist/index.html
+          echo "    <ul>" >> dist/index.html
+          echo "        <li><a href=\"./en\">English Version</a></li>" >> dist/index.html
+          echo "        <li><a href=\"./zh\">中文版本</a></li>" >> dist/index.html
+          echo "    </ul>" >> dist/index.html
+          echo "    <footer>" >> dist/index.html
+          echo "        <small>&copy; 2025 GPT Paper Assistant. All rights reserved.</small>" >> dist/index.html
+          echo "    </footer>" >> dist/index.html
+          echo "</body>" >> dist/index.html
+          echo "</html>" >> dist/index.html
+
+      - name: Debug deployment condition
+        run: |
+          echo "Deployment condition: ${{ steps.check_files.outputs.files_exists }}"
+
+      # 上传静态网页文件作为 GitHub Pages 的 artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-artifact@v4
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          path: dist
+
+      # 检查文件
+      - name: Check the pwd
+        run: |
+          pwd
+          ls
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist # The folder the action should deploy.
