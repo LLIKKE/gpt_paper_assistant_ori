@@ -148,7 +148,7 @@ def filter_papers_by_title(
                 if paper.arxiv_id not in filtered_set:
                     final_list.append(paper)
                 else:
-                    print("Filtered out paper " + paper.arxiv_id) # 删掉的title
+                    print("Filtered out paper " + paper.title) # 删掉的title
         except Exception as ex:
             print("Exception happened " + str(ex))
             print("Failed to parse LM output as list " + out_text)
