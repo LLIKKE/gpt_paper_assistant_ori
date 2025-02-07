@@ -139,7 +139,7 @@ def filter_papers_by_title(
         #print(full_prompt)
         model = config["SELECTION"]["model"]
         completion = call_chatgpt(full_prompt, openai_client, model)
-        print(completion)
+        #print(completion)
         cost += 0#calc_price(model, completion.usage)
         out_text = completion.choices[0].message.content
         try:
