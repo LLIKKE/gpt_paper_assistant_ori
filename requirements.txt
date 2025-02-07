@@ -9,3 +9,4 @@ bs4
 pre-commit
 slack_sdk
 arxiv~=2.0.0
+zhipuai
