@@ -2,6 +2,7 @@ import configparser
 import dataclasses
 import json
 import re
+import time
 from typing import List
 
 import retry
@@ -49,20 +50,24 @@ def filter_papers_by_hindex(all_authors, papers, config):
                 max_h = max(
                     max_h, max([alias["hIndex"] for alias in all_authors[author]])
                 )
-        if max_h >= float(config["FILTERING"]["hcutoff"]):
-            paper_list.append(paper)
+        #if max_h >= float(config["FILTERING"]["hcutoff"]):
+        paper_list.append(paper)
     return paper_list
 
 
 def calc_price(model, usage):
     if model == "gpt-4-1106-preview":
         return (0.01 * usage.prompt_tokens + 0.03 * usage.completion_tokens) / 1000.0
-    if model == "gpt-4":
+    elif model == "gpt-4":
         return (0.03 * usage.prompt_tokens + 0.06 * usage.completion_tokens) / 1000.0
-    if (model == "gpt-3.5-turbo") or (model == "gpt-3.5-turbo-1106"):
+    elif (model == "gpt-3.5-turbo") or (model == "gpt-3.5-turbo-1106"):
         return (0.0015 * usage.prompt_tokens + 0.002 * usage.completion_tokens) / 1000.0
-    if model == "deepseek-chat":
+    elif model == "deepseek-chat":
         return ((0.014 * usage.prompt_tokens) / 1_000_000) + ((0.28 * usage.completion_tokens) / 1_000_000)
+    elif model == "glm-4-flash":
+        return 0
+    else:
+        return 0
 
 
 @retry.retry(tries=3, delay=2)
@@ -131,6 +136,7 @@ def filter_papers_by_title(
     final_list = []
     cost = 0
     for batch in batches_of_papers:
+        #time.sleep(10)
         papers_string = "".join([paper_to_titles(paper) for paper in batch])
         full_prompt = (
             base_prompt + "\n " + criterion + "\n" + papers_string + filter_postfix
@@ -138,7 +144,7 @@ def filter_papers_by_title(
         model = config["SELECTION"]["model"]
         completion = call_chatgpt(full_prompt, openai_client, model)
         print(completion)
-        cost += calc_price(model, completion.usage)
+        cost += 0#calc_price(model, completion.usage)
         out_text = completion.choices[0].message.content
         try:
             filtered_set = set(json.loads(out_text))
@@ -146,7 +152,7 @@ def filter_papers_by_title(
                 if paper.arxiv_id not in filtered_set:
                     final_list.append(paper)
                 else:
-                    print("Filtered out paper " + paper.arxiv_id)
+                    print("Filtered out paper " + paper.arxiv_id) # 删掉的title
         except Exception as ex:
             print("Exception happened " + str(ex))
             print("Failed to parse LM output as list " + out_text)

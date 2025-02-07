@@ -219,14 +219,17 @@ if __name__ == "__main__":
         raise ValueError(
             "OpenAI key is not set - please set OAI_KEY to your OpenAI key"
         )
-    openai_client = OpenAI(api_key=OAI_KEY, base_url="https://api.deepseek.com")
+    #openai_client = OpenAI(api_key=OAI_KEY, base_url="https://api.deepseek.com")
+    from zhipuai import ZhipuAI
+
+    openai_client = ZhipuAI(api_key="dddec40b3e60b685cb40682cdb5c9cb7.vRrvLk4skGr0DZSm")
     #openai_client = openai
     # load the author list
     with io.open("configs/authors.txt", "r") as fopen:
         author_names, author_ids = parse_authors(fopen.readlines())
     author_id_set = set(author_ids)
 
-    papers = list(get_papers_from_arxiv(config))#[:3]
+    papers = list(get_papers_from_arxiv(config))
     # dump all papers for debugging
 
     all_authors = set()
@@ -234,7 +237,7 @@ if __name__ == "__main__":
         all_authors.update(set(paper.authors))
     if config["OUTPUT"].getboolean("debug_messages"):
         print("Getting author info for " + str(len(all_authors)) + " authors")
-    all_authors = get_authors(list(all_authors), S2_API_KEY)
+    all_authors = get_authors(list(all_authors)[:10], S2_API_KEY)
 
     if config["OUTPUT"].getboolean("dump_debug_file"):
         with open(
