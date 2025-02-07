@@ -131,7 +131,7 @@ def batched(items, batch_size):
 def filter_papers_by_title(
     papers, config, openai_client, base_prompt, criterion
 ) -> List[Paper]:
-    filter_postfix = 'Find any paper that is completely irrelevant to any of the criteria, and you are absolutely sure your friend will not enjoy, formatted as a list of arxiv ids like ["ID1", "ID2", "ID3"..]. Be extremely cautious, and if you are unsure at all, do not add a paper in this list. You will check it in detail later.\n Directly respond with the list, do not add ANY extra text before or after the list. Even if every paper seems irrelevant, please keep at least TWO papers'
+    filter_postfix = 'Identify any papers that are absolutely and completely irrelevant to the criteria, and you are absolutely sure your friend will not enjoy, formatted as a list of arxiv ids like ["ID1", "ID2", "ID3"..]. Be extremely cautious, and if you are unsure at all, do not add a paper in this list. You will check it in detail later.\n Directly respond with the list, do not add ANY extra text before or after the list. Even if every paper seems irrelevant, please keep at least TWO papers'
     batches_of_papers = batched(papers, 20)
     final_list = []
     cost = 0
@@ -219,8 +219,7 @@ def filter_by_gpt(
             all_cost += cost
             for jdict in json_dicts:
                 if (
-                    int(jdict["RELEVANCE"])
-                    >= int(config["FILTERING"]["relevance_cutoff"])
+                    int(jdict["RELEVANCE"])>= int(config["FILTERING"]["relevance_cutoff"])
                     and jdict["NOVELTY"] >= int(config["FILTERING"]["novelty_cutoff"])
                     and jdict["ARXIVID"] in all_papers
                 ):
@@ -242,6 +241,11 @@ def filter_by_gpt(
             ) as outfile:
                 json.dump(scored_batches, outfile, cls=EnhancedJSONEncoder, indent=4)
         if config["OUTPUT"].getboolean("debug_messages"):
+
+            print(
+                str(len(paper_list))
+                + " papers after title and abs filtering"
+            )
             print("Total cost: $" + str(all_cost))
 
 

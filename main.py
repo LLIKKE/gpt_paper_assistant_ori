@@ -8,7 +8,7 @@ import openai
 from requests import Session
 from typing import TypeVar, Generator
 import io
-
+import dataclasses
 from retry import retry
 from tqdm import tqdm
 
@@ -235,23 +235,38 @@ if __name__ == "__main__":
     papers = list(get_papers_from_arxiv(config))
     # dump all papers for debugging
 
-    all_authors = set()
+    #all_authors = set()
+    #for paper in papers:
+    #    all_authors.update(set(paper.authors))
+
+    #if config["OUTPUT"].getboolean("debug_messages"):
+    #    print("Getting author info for " + str(len(all_authors)) + " authors")
+
+    #all_authors = get_authors(list(all_authors), S2_API_KEY) # 耗时
+
+    #selected_papers, all_papers, sort_dict = filter_by_author(
+    #    all_authors, papers, author_id_set, config
+    #)
+
+    #paper_list = filter_papers_by_hindex(all_authors, papers, config)
+    all_papers = {}
+    selected_papers = {}
+    sort_dict = {}
     for paper in papers:
-        all_authors.update(set(paper.authors))
+        all_papers[paper.arxiv_id] = paper
+        selected_papers[paper.arxiv_id] = paper
+        selected_papers[paper.arxiv_id] = {
+            **dataclasses.asdict(paper),
+            **{"COMMENT": "Author match"},
+        }
+        sort_dict[paper.arxiv_id] = float(
+            config["SELECTION"]["author_match_score"]
+        )
 
-    if config["OUTPUT"].getboolean("debug_messages"):
-        print("Getting author info for " + str(len(all_authors)) + " authors")
-
-    all_authors = get_authors(list(all_authors)[:10], S2_API_KEY)
-
-    selected_papers, all_papers, sort_dict = filter_by_author(
-        all_authors, papers, author_id_set, config
-    )
-
-    paper_list = filter_papers_by_hindex(all_authors, papers, config)
-
+    # selected_papers 是根据作者选出来的论文
+    #
     filter_by_gpt(
-        paper_list,
+        papers,
         config,
         openai_client,
         all_papers,
