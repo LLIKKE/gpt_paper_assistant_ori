@@ -13,7 +13,7 @@
   document.documentElement.setAttribute('data-color-mode', mode);
   document.querySelector('.profile-color-modes-toggle').onclick = toggleMode;
 })();</script><div><div class="markdown-heading"><h1 class="heading-element">Personalized Daily Arxiv Papers 02/07/2025</h1><a id="user-content-personalized-daily-arxiv-papers-02072025" class="anchor" aria-label="Permalink: Personalized Daily Arxiv Papers 02/07/2025" href="#personalized-daily-arxiv-papers-02072025"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Total relevant papers: 5</p>
+<p>Total relevant papers: 3</p>
 <p>Paper selection prompt and criteria at the bottom</p>
 <p>Table of contents with paper titles:</p>
 <ol start="0">
@@ -26,16 +26,8 @@
 <strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
 </li>
 <li>
-<p><a href="#link2">Probe-Free Low-Rank Activation Intervention</a>
-<strong>Authors:</strong> Chonghe Jiang, Bao Nguyen, Anthony Man-Cho So, Viet Anh Nguyen</p>
-</li>
-<li>
-<p><a href="#link3">Path Planning for Masked Diffusion Model Sampling</a>
-<strong>Authors:</strong> Fred Zhangzhi Peng, Zachary Bezemek, Sawan Patel, Sherwood Yao, Jarrid Rector-Brooks, Alexander Tong, Pranam Chatterjee</p>
-</li>
-<li>
-<p><a href="#link4">Rank Also Matters: Hierarchical Configuration for Mixture of Adapter Experts in LLM Fine-Tuning</a>
-<strong>Authors:</strong> Peizhuang Cong, Wenpu Liu, Wenhan Yu, Haochen Zhao, Tong Yang</p>
+<p><a href="#link2">Adaptive Semantic Prompt Caching with VectorQ</a>
+<strong>Authors:</strong> Luis Gaspar Schroeder, Shu Liu, Alejandro Cuadron, Mark Zhao, Stephan Krusche, Alfons Kemper, Matei Zaharia, Joseph E. Gonzalez</p>
 </li>
 </ol>
 <hr>
@@ -51,23 +43,11 @@
 <strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
 <p><strong>Abstract:</strong> arXiv:2502.04056v1 Announce Type: new  Abstract: Diffusion transformers (DiTs) combine transformer architectures with diffusion models. However, their computational complexity imposes significant limitations on real-time applications and sustainability of AI systems. In this study, we aim to enhance the computational efficiency through model quantization, which represents the weights and activation values with lower precision. Multi-region quantization (MRQ) is introduced to address the asymmetric distribution of network values in DiT blocks by allocating two scaling parameters to sub-regions. Additionally, time-grouping quantization (TGQ) is proposed to reduce quantization error caused by temporal variation in activations. The experimental results show that the proposed algorithm achieves performance comparable to the original full-precision model with only a 0.29 increase in FID at W8A8. Furthermore, it outperforms other baselines at W6A6, thereby confirming its suitability for low-bit quantization. These results highlight the potential of our method to enable efficient real-time generative models.</p>
 <hr>
-<div class="markdown-heading"><h2 class="heading-element">2. <a href="https://arxiv.org/abs/2502.04043" rel="nofollow">Probe-Free Low-Rank Activation Intervention</a> <a id="user-content-link2"></a>
-</h2><a id="user-content-2-probe-free-low-rank-activation-intervention-" class="anchor" aria-label="Permalink: 2. Probe-Free Low-Rank Activation Intervention" href="#2-probe-free-low-rank-activation-intervention-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.04043
-<strong>Authors:</strong> Chonghe Jiang, Bao Nguyen, Anthony Man-Cho So, Viet Anh Nguyen</p>
-<p><strong>Abstract:</strong> arXiv:2502.04043v1 Announce Type: new  Abstract: Language models (LMs) can produce texts that appear accurate and coherent but contain untruthful or toxic content. Inference-time interventions that edit the hidden activations have shown promising results in steering the LMs towards desirable generations. Existing activation intervention methods often comprise an activation probe to detect undesirable generation, triggering the activation modification to steer subsequent generation. This paper proposes a probe-free intervention method FLORAIN for all attention heads in a specific activation layer. It eliminates the need to train classifiers for probing purposes. The intervention function is parametrized by a sample-wise nonlinear low-rank mapping, which is trained by minimizing the distance between the modified activations and their projection onto the manifold of desirable content. Under specific constructions of the manifold and projection distance, we show that the intervention strategy can be computed efficiently by solving a smooth optimization problem. The empirical results, benchmarked on multiple base models, demonstrate that FLORAIN consistently outperforms several baseline methods in enhancing model truthfulness and quality across generation and multiple-choice tasks.</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">3. <a href="https://arxiv.org/abs/2502.03540" rel="nofollow">Path Planning for Masked Diffusion Model Sampling</a> <a id="user-content-link3"></a>
-</h2><a id="user-content-3-path-planning-for-masked-diffusion-model-sampling-" class="anchor" aria-label="Permalink: 3. Path Planning for Masked Diffusion Model Sampling" href="#3-path-planning-for-masked-diffusion-model-sampling-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.03540
-<strong>Authors:</strong> Fred Zhangzhi Peng, Zachary Bezemek, Sawan Patel, Sherwood Yao, Jarrid Rector-Brooks, Alexander Tong, Pranam Chatterjee</p>
-<p><strong>Abstract:</strong> arXiv:2502.03540v1 Announce Type: new  Abstract: In this paper, we investigate how the order in which tokens are unmasked during masked diffusion models (MDMs) inference affects generative quality. We derive an expanded evidence lower bound (ELBO) that introduces a planner, responsible for selecting which tokens to unmask at each step. Our analysis suggests that alternative unmasking strategies can improve generative performance. Based on these insights, we propose Path Planning (P2), a sampling framework that leverages pre-trained BERT or the denoiser itself to guide unmasking decisions. P2 generalizes all known MDM sampling strategies and enables significant improvements across diverse domains including language generation (in-context learning, code generation, story infilling, mathematical reasoning, reverse curse correction) and biological sequence generation (protein and RNA sequences).</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">4. <a href="https://arxiv.org/abs/2502.03884" rel="nofollow">Rank Also Matters: Hierarchical Configuration for Mixture of Adapter Experts in LLM Fine-Tuning</a> <a id="user-content-link4"></a>
-</h2><a id="user-content-4-rank-also-matters-hierarchical-configuration-for-mixture-of-adapter-experts-in-llm-fine-tuning-" class="anchor" aria-label="Permalink: 4. Rank Also Matters: Hierarchical Configuration for Mixture of Adapter Experts in LLM Fine-Tuning" href="#4-rank-also-matters-hierarchical-configuration-for-mixture-of-adapter-experts-in-llm-fine-tuning-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.03884
-<strong>Authors:</strong> Peizhuang Cong, Wenpu Liu, Wenhan Yu, Haochen Zhao, Tong Yang</p>
-<p><strong>Abstract:</strong> arXiv:2502.03884v1 Announce Type: new  Abstract: Large language models (LLMs) have demonstrated remarkable success across various tasks, accompanied by a continuous increase in their parameter size. Parameter-efficient fine-tuning (PEFT) methods, such as Low-Rank Adaptation (LoRA), address the challenges of fine-tuning LLMs by significantly reducing the number of trainable parameters. Recent studies have integrated LoRA with Mixture of Experts (MoE) architectures, leveraging multiple adapter experts and gating mechanisms to further improve fine-tuning performance. However, existing approaches primarily focus on adjusting the allocations of adapter experts per layer to optimize the introduced trainable parameter size, while neglecting a critical factor of adapters' rank. To this end, we propose a hierarchical scheme for expert allocation and rank configuration, HILO, which dynamically adjusts the number and rank of adapter experts across layers, matching the varying representational complexity of model layers in adapter-granularity. Extensive experiments on multiple benchmark tasks demonstrate that HILO outperforms existing methods in accuracy while introducing fewer trainable parameters, providing an efficient and practical solution for fine-tuning LLMs.</p>
+<div class="markdown-heading"><h2 class="heading-element">2. <a href="https://arxiv.org/abs/2502.03771" rel="nofollow">Adaptive Semantic Prompt Caching with VectorQ</a> <a id="user-content-link2"></a>
+</h2><a id="user-content-2-adaptive-semantic-prompt-caching-with-vectorq-" class="anchor" aria-label="Permalink: 2. Adaptive Semantic Prompt Caching with VectorQ" href="#2-adaptive-semantic-prompt-caching-with-vectorq-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>ArXiv ID:</strong> 2502.03771
+<strong>Authors:</strong> Luis Gaspar Schroeder, Shu Liu, Alejandro Cuadron, Mark Zhao, Stephan Krusche, Alfons Kemper, Matei Zaharia, Joseph E. Gonzalez</p>
+<p><strong>Abstract:</strong> arXiv:2502.03771v1 Announce Type: new  Abstract: Semantic prompt caches reduce the latency and cost of large language model (LLM) inference by reusing cached LLM-generated responses for semantically similar prompts. Vector similarity metrics assign a numerical score to quantify the similarity between an embedded prompt and its nearest neighbor in the cache. Existing systems rely on a static threshold to classify whether the similarity score is sufficiently high to result in a cache hit. We show that this one-size-fits-all threshold is insufficient across different prompts. We propose VectorQ, a framework to learn embedding-specific threshold regions that adapt to the complexity and uncertainty of an embedding. Through evaluations on a combination of four diverse datasets, we show that VectorQ consistently outperforms state-of-the-art systems across all static thresholds, achieving up to 12x increases in cache hit rate and error rate reductions up to 92%.</p>
 <hr>
 <hr>
 <div class="markdown-heading"><h2 class="heading-element">Paper selection prompt</h2><a id="user-content-paper-selection-prompt" class="anchor" aria-label="Permalink: Paper selection prompt" href="#paper-selection-prompt"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -75,7 +55,6 @@
 <li>New advancements in quantization techniques for large language models
 <ul>
 <li>Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like rotation matrices is particularly relevant.</li>
-<li>Not relevant: Papers that primarily focus on the application of quantization in unrelated fields, or papers that only discuss simple, traditional quantization techniques without introducing new methodological advancements.</li>
 </ul>
 </li>
 </ol>
