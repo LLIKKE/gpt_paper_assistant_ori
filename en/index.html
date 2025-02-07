@@ -13,41 +13,31 @@
   document.documentElement.setAttribute('data-color-mode', mode);
   document.querySelector('.profile-color-modes-toggle').onclick = toggleMode;
 })();</script><div><div class="markdown-heading"><h1 class="heading-element">Personalized Daily Arxiv Papers 02/07/2025</h1><a id="user-content-personalized-daily-arxiv-papers-02072025" class="anchor" aria-label="Permalink: Personalized Daily Arxiv Papers 02/07/2025" href="#personalized-daily-arxiv-papers-02072025"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Total relevant papers: 3</p>
+<p>Total relevant papers: 2</p>
 <p>Paper selection prompt and criteria at the bottom</p>
 <p>Table of contents with paper titles:</p>
 <ol start="0">
 <li>
-<p><a href="#link0">Bilevel ZOFO: Bridging Parameter-Efficient and Zeroth-Order Techniques for Efficient LLM Fine-Tuning and Meta-Training</a>
-<strong>Authors:</strong> Reza Shirkavand, Qi He, Peiran Yu, Heng Huang</p>
+<p><a href="#link0">Probe-Free Low-Rank Activation Intervention</a>
+<strong>Authors:</strong> Chonghe Jiang, Bao Nguyen, Anthony Man-Cho So, Viet Anh Nguyen</p>
 </li>
 <li>
 <p><a href="#link1">TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers</a>
 <strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
 </li>
-<li>
-<p><a href="#link2">Adaptive Semantic Prompt Caching with VectorQ</a>
-<strong>Authors:</strong> Luis Gaspar Schroeder, Shu Liu, Alejandro Cuadron, Mark Zhao, Stephan Krusche, Alfons Kemper, Matei Zaharia, Joseph E. Gonzalez</p>
-</li>
 </ol>
 <hr>
-<div class="markdown-heading"><h2 class="heading-element">0. <a href="https://arxiv.org/abs/2502.03604" rel="nofollow">Bilevel ZOFO: Bridging Parameter-Efficient and Zeroth-Order Techniques for Efficient LLM Fine-Tuning and Meta-Training</a> <a id="user-content-link0"></a>
-</h2><a id="user-content-0-bilevel-zofo-bridging-parameter-efficient-and-zeroth-order-techniques-for-efficient-llm-fine-tuning-and-meta-training-" class="anchor" aria-label="Permalink: 0. Bilevel ZOFO: Bridging Parameter-Efficient and Zeroth-Order Techniques for Efficient LLM Fine-Tuning and Meta-Training" href="#0-bilevel-zofo-bridging-parameter-efficient-and-zeroth-order-techniques-for-efficient-llm-fine-tuning-and-meta-training-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.03604
-<strong>Authors:</strong> Reza Shirkavand, Qi He, Peiran Yu, Heng Huang</p>
-<p><strong>Abstract:</strong> arXiv:2502.03604v1 Announce Type: new  Abstract: Fine-tuning pre-trained Large Language Models (LLMs) for downstream tasks using First-Order (FO) optimizers presents significant computational challenges. Parameter-Efficient Fine-Tuning(PEFT) methods have been proposed to address these challenges by freezing most model parameters and training only a small subset. While PEFT is efficient, it may not outperform full fine-tuning when high task-specific performance is required. Zeroth-Order (ZO) methods offer an alternative for fine-tuning the entire pre-trained model by approximating gradients using only the forward pass, thus eliminating the computational burden of back-propagation in first-order methods. However, when implementing ZO methods, a hard prompt is crucial, and relying on simple, fixed hard prompts may not be optimal. In this paper, we propose a bilevel optimization framework that complements ZO methods with PEFT to mitigate sensitivity to hard prompts while efficiently and effectively fine-tuning LLMs. Our Bilevel ZOFO (Zeroth-Order-First-Order) method employs a double-loop optimization strategy, where only the gradient of the PEFT model and the forward pass of the base model are required. We provide convergence guarantees for Bilevel ZOFO. Empirically, we demonstrate that Bilevel ZOFO outperforms both PEFT and ZO methods in single-task settings while maintaining similar memory efficiency. Additionally, we show its strong potential for multitask learning. Compared to current first-order meta-training algorithms for multitask learning, our method has significantly lower computational demands while maintaining or improving performance.</p>
+<div class="markdown-heading"><h2 class="heading-element">0. <a href="https://arxiv.org/abs/2502.04043" rel="nofollow">Probe-Free Low-Rank Activation Intervention</a> <a id="user-content-link0"></a>
+</h2><a id="user-content-0-probe-free-low-rank-activation-intervention-" class="anchor" aria-label="Permalink: 0. Probe-Free Low-Rank Activation Intervention" href="#0-probe-free-low-rank-activation-intervention-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>ArXiv ID:</strong> 2502.04043
+<strong>Authors:</strong> Chonghe Jiang, Bao Nguyen, Anthony Man-Cho So, Viet Anh Nguyen</p>
+<p><strong>Abstract:</strong> arXiv:2502.04043v1 Announce Type: new  Abstract: Language models (LMs) can produce texts that appear accurate and coherent but contain untruthful or toxic content. Inference-time interventions that edit the hidden activations have shown promising results in steering the LMs towards desirable generations. Existing activation intervention methods often comprise an activation probe to detect undesirable generation, triggering the activation modification to steer subsequent generation. This paper proposes a probe-free intervention method FLORAIN for all attention heads in a specific activation layer. It eliminates the need to train classifiers for probing purposes. The intervention function is parametrized by a sample-wise nonlinear low-rank mapping, which is trained by minimizing the distance between the modified activations and their projection onto the manifold of desirable content. Under specific constructions of the manifold and projection distance, we show that the intervention strategy can be computed efficiently by solving a smooth optimization problem. The empirical results, benchmarked on multiple base models, demonstrate that FLORAIN consistently outperforms several baseline methods in enhancing model truthfulness and quality across generation and multiple-choice tasks.</p>
 <hr>
 <div class="markdown-heading"><h2 class="heading-element">1. <a href="https://arxiv.org/abs/2502.04056" rel="nofollow">TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers</a> <a id="user-content-link1"></a>
 </h2><a id="user-content-1-tq-dit-efficient-time-aware-quantization-for-diffusion-transformers-" class="anchor" aria-label="Permalink: 1. TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers" href="#1-tq-dit-efficient-time-aware-quantization-for-diffusion-transformers-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p><strong>ArXiv ID:</strong> 2502.04056
 <strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
 <p><strong>Abstract:</strong> arXiv:2502.04056v1 Announce Type: new  Abstract: Diffusion transformers (DiTs) combine transformer architectures with diffusion models. However, their computational complexity imposes significant limitations on real-time applications and sustainability of AI systems. In this study, we aim to enhance the computational efficiency through model quantization, which represents the weights and activation values with lower precision. Multi-region quantization (MRQ) is introduced to address the asymmetric distribution of network values in DiT blocks by allocating two scaling parameters to sub-regions. Additionally, time-grouping quantization (TGQ) is proposed to reduce quantization error caused by temporal variation in activations. The experimental results show that the proposed algorithm achieves performance comparable to the original full-precision model with only a 0.29 increase in FID at W8A8. Furthermore, it outperforms other baselines at W6A6, thereby confirming its suitability for low-bit quantization. These results highlight the potential of our method to enable efficient real-time generative models.</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">2. <a href="https://arxiv.org/abs/2502.03771" rel="nofollow">Adaptive Semantic Prompt Caching with VectorQ</a> <a id="user-content-link2"></a>
-</h2><a id="user-content-2-adaptive-semantic-prompt-caching-with-vectorq-" class="anchor" aria-label="Permalink: 2. Adaptive Semantic Prompt Caching with VectorQ" href="#2-adaptive-semantic-prompt-caching-with-vectorq-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.03771
-<strong>Authors:</strong> Luis Gaspar Schroeder, Shu Liu, Alejandro Cuadron, Mark Zhao, Stephan Krusche, Alfons Kemper, Matei Zaharia, Joseph E. Gonzalez</p>
-<p><strong>Abstract:</strong> arXiv:2502.03771v1 Announce Type: new  Abstract: Semantic prompt caches reduce the latency and cost of large language model (LLM) inference by reusing cached LLM-generated responses for semantically similar prompts. Vector similarity metrics assign a numerical score to quantify the similarity between an embedded prompt and its nearest neighbor in the cache. Existing systems rely on a static threshold to classify whether the similarity score is sufficiently high to result in a cache hit. We show that this one-size-fits-all threshold is insufficient across different prompts. We propose VectorQ, a framework to learn embedding-specific threshold regions that adapt to the complexity and uncertainty of an embedding. Through evaluations on a combination of four diverse datasets, we show that VectorQ consistently outperforms state-of-the-art systems across all static thresholds, achieving up to 12x increases in cache hit rate and error rate reductions up to 92%.</p>
 <hr>
 <hr>
 <div class="markdown-heading"><h2 class="heading-element">Paper selection prompt</h2><a id="user-content-paper-selection-prompt" class="anchor" aria-label="Permalink: Paper selection prompt" href="#paper-selection-prompt"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -57,8 +47,16 @@
 <li>Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like rotation matrices is particularly relevant.</li>
 </ul>
 </li>
+<li>Observing the Characteristics of large language model Activation Values
+<ul>
+<li>Relevant: Papers that identify specific characteristics of activation values in large language models like LLaMA at different positions like attention value, and use these findings to explore the impact of activation value distributions on inference results. Such research aims at improving or enhancing the performance of large language models based on these observations.</li>
+</ul>
+</li>
+<li>Improving the Efficiency of Large Language Model KVCaches
+<ul>
+<li>Relevant: Papers that enhance the efficiency of KVCaches in large language models, such as those focusing on compressing or pruning KVCaches to reduce memory and computational load during inference.
+In suggesting papers to your friend, remember that he enjoys papers on large language model (llm) compression, inference acceleration techniques, and related algorithms such as quantization and pruning. He is particularly interested in research that explores new methods for reducing large language model size and improving inference speed, as well as innovative approaches to optimizing large language model.</li>
+</ul>
+</li>
 </ol>
-<p>In suggesting papers to your friend, remember that he enjoys papers on statistical machine learning, and generative modeling in natural language processing.
-Your friend also likes learning about surprising empirical results in language models, as well as clever statistical tricks.
-He does not want to read papers that are about primarily applications of methods to specific domains.</p>
 </div></div><div class="footer container-xl width-full p-responsive"><div class="position-relative flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between pt-4 pb-4 mt-6 f6 color-text-secondary border-top color-border-secondary text-center"><div class="footer-octicon d-lg-block mx-lg-4"><a title="LLIKKE/gpt_paper_assistant_ori" href="https://github.com/LLIKKE/gpt_paper_assistant_ori" target="_blank" rel="noreferrer noopener"><svg class="octicon octicon-mark-github gh-logo" width="36" height="36" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"></path></svg></a></div><span class="mt-2 d-block footprint"><span>powered by </span><a href="https://github.com/wranders/markdown-to-pages-action" target="_blank" rel="noreferrer noopener">markdown-to-pages-action</a></span></div></div></body></html>
