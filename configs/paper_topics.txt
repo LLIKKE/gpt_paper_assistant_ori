@@ -1,6 +1,6 @@
  1. New advancements in quantization techniques for large language models
     - Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like rotation matrices is particularly relevant.
-    - Not relevant: Papers that primarily focus on the application of quantization in unrelated fields, or papers that only discuss simple, traditional quantization techniques without introducing new methodological advancements.
+
  In suggesting papers to your friend, remember that he enjoys papers on statistical machine learning, and generative modeling in natural language processing.
  Your friend also likes learning about surprising empirical results in language models, as well as clever statistical tricks.
  He does not want to read papers that are about primarily applications of methods to specific domains.
