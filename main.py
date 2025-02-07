@@ -2,7 +2,7 @@ import json
 import configparser
 import os
 import time
-
+from zhipuai import ZhipuAI
 from openai import OpenAI
 import openai
 from requests import Session
@@ -13,7 +13,7 @@ from retry import retry
 from tqdm import tqdm
 
 from arxiv_scraper import get_papers_from_arxiv_rss_api
-from filter_papers import filter_by_author, filter_by_gpt
+from filter_papers import filter_by_author, filter_by_gpt, filter_papers_by_hindex
 from parse_json_to_md import render_md_string
 from push_to_slack import push_to_slack
 from arxiv_scraper import EnhancedJSONEncoder
@@ -181,14 +181,14 @@ def parse_authors(lines):
     return authors, author_ids
 
 
-def translate_to_chinese_via_deepseek(text: str, client: OpenAI) -> str:
+def translate_to_chinese_via_deepseek(text: str, client: OpenAI,config) -> str:
     """
     使用 DeepSeek API 将英文文本翻译成中文
     """
     try:
         # 使用 DeepSeek API 的 chat.completions.create 方法
         response = client.chat.completions.create(
-            model="deepseek-chat",
+            model=config["SELECTION"]["model"],
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that translates English text to Chinese."},
                 {"role": "user", "content": f"Translate the following text to Chinese:\n\n{text}"},
@@ -214,15 +214,18 @@ if __name__ == "__main__":
     config.read("configs/config.ini")
 
     S2_API_KEY = os.environ.get("S2_KEY")
-    OAI_KEY = "sk-7f955bffa0a9492f99e0579756ba321b"#os.environ.get("OAI_KEY")
+    OAI_KEY = config["SELECTION"]["api"] #"sk-7f955bffa0a9492f99e0579756ba321b"#os.environ.get("OAI_KEY")
     if OAI_KEY is None:
         raise ValueError(
             "OpenAI key is not set - please set OAI_KEY to your OpenAI key"
         )
-    #openai_client = OpenAI(api_key=OAI_KEY, base_url="https://api.deepseek.com")
-    from zhipuai import ZhipuAI
 
-    openai_client = ZhipuAI(api_key="dddec40b3e60b685cb40682cdb5c9cb7.vRrvLk4skGr0DZSm")
+    if "deepseek" in config["SELECTION"]["model"]:
+        openai_client = OpenAI(api_key=OAI_KEY, base_url="https://api.deepseek.com")
+    elif "glm" in config["SELECTION"]["model"]:
+        openai_client = ZhipuAI(api_key=OAI_KEY)
+    else:
+        raise ValueError()
     #openai_client = openai
     # load the author list
     with io.open("configs/authors.txt", "r") as fopen:
@@ -235,30 +238,20 @@ if __name__ == "__main__":
     all_authors = set()
     for paper in papers:
         all_authors.update(set(paper.authors))
+
     if config["OUTPUT"].getboolean("debug_messages"):
         print("Getting author info for " + str(len(all_authors)) + " authors")
-    all_authors = get_authors(list(all_authors)[:10], S2_API_KEY)
 
-    if config["OUTPUT"].getboolean("dump_debug_file"):
-        with open(
-            config["OUTPUT"]["output_path"] + "papers.debug.json", "w"
-        ) as outfile:
-            json.dump(papers, outfile, cls=EnhancedJSONEncoder, indent=4)
-        with open(
-            config["OUTPUT"]["output_path"] + "all_authors.debug.json", "w"
-        ) as outfile:
-            json.dump(all_authors, outfile, cls=EnhancedJSONEncoder, indent=4)
-        with open(
-            config["OUTPUT"]["output_path"] + "author_id_set.debug.json", "w"
-        ) as outfile:
-            json.dump(list(author_id_set), outfile, cls=EnhancedJSONEncoder, indent=4)
+    all_authors = get_authors(list(all_authors)[:10], S2_API_KEY)
 
     selected_papers, all_papers, sort_dict = filter_by_author(
         all_authors, papers, author_id_set, config
     )
+
+    paper_list = filter_papers_by_hindex(all_authors, papers, config)
+
     filter_by_gpt(
-        all_authors,
-        papers,
+        paper_list,
         config,
         openai_client,
         all_papers,
@@ -270,8 +263,8 @@ if __name__ == "__main__":
     # 对筛选出的论文标题和摘要进行翻译
     for paper_id, paper in selected_papers.items():
         print(f"Translating paper: {paper['title']}")
-        paper['title_cn'] = translate_to_chinese_via_deepseek(paper['title'], openai_client)
-        paper['abstract_cn'] = translate_to_chinese_via_deepseek(paper['abstract'], openai_client)
+        paper['title_cn'] = translate_to_chinese_via_deepseek(paper['title'], openai_client,config)
+        paper['abstract_cn'] = translate_to_chinese_via_deepseek(paper['abstract'], openai_client,config)
     
 
     # sort the papers by relevance and novelty

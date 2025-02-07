@@ -13,7 +13,9 @@ As a cost estimate, running this on all of `cs.CL` cost $0.07 on 2/7/2024(on GPT
 - **2/7/2024**: fixed a critical issue from ArXiv changing their RSS format. Added and enabled a title filtering to reduce costs.
 - **1/6/2025**: fixed arxiv api. Changing api from gpt4 to deepseek v3.
 - **2/2/2025**: fixed artifact@v3 bug. Changing v3 to v4.
-
+- **2/7/2025**: 
+  - Replace static page display with JamesIves/github-pages-deploy-action@v4.
+  - Add free model api glm-4-flash.
   
 ## Quickstart
 This is the minimal necessary steps to get the scanner to run. It is highly recommended to read the whole thing to decide what you want to run.

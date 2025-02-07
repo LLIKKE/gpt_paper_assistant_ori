@@ -50,8 +50,8 @@ def filter_papers_by_hindex(all_authors, papers, config):
                 max_h = max(
                     max_h, max([alias["hIndex"] for alias in all_authors[author]])
                 )
-        #if max_h >= float(config["FILTERING"]["hcutoff"]):
-        paper_list.append(paper)
+        if max_h >= float(config["FILTERING"]["hcutoff"]):
+            paper_list.append(paper)
     return paper_list
 
 
@@ -182,7 +182,7 @@ def run_on_batch(
 
 
 def filter_by_gpt(
-    all_authors, papers, config, openai_client, all_papers, selected_papers, sort_dict
+    paper_list, config, openai_client, all_papers, selected_papers, sort_dict
 ):
     # deal with config parsing
     with open("configs/base_prompt.txt", "r") as f:
@@ -194,7 +194,6 @@ def filter_by_gpt(
     all_cost = 0
     if config["SELECTION"].getboolean("run_openai"):
         # filter first by hindex of authors to reduce costs.
-        paper_list = filter_papers_by_hindex(all_authors, papers, config)
         if config["OUTPUT"].getboolean("debug_messages"):
             print(str(len(paper_list)) + " papers after hindex filtering")
         cost = 0
