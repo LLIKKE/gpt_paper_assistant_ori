@@ -169,7 +169,7 @@ def get_papers_from_arxiv_rss(area: str, config: Optional[dict]) -> Tuple[
             paper_list.append(new_paper)
         else:
             logging.debug(f"Skipping paper {title} as it does not belong to {area}")
-
+    paper_list = []
     return paper_list, timestamp, last_id
 
 
