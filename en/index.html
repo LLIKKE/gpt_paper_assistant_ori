@@ -13,23 +13,9 @@
   document.documentElement.setAttribute('data-color-mode', mode);
   document.querySelector('.profile-color-modes-toggle').onclick = toggleMode;
 })();</script><div><div class="markdown-heading"><h1 class="heading-element">Personalized Daily Arxiv Papers 02/07/2025</h1><a id="user-content-personalized-daily-arxiv-papers-02072025" class="anchor" aria-label="Permalink: Personalized Daily Arxiv Papers 02/07/2025" href="#personalized-daily-arxiv-papers-02072025"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Total relevant papers: 1</p>
+<p>Total relevant papers: 0</p>
 <p>Paper selection prompt and criteria at the bottom</p>
 <p>Table of contents with paper titles:</p>
-<ol start="0">
-<li>
-<a href="#link0">TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers</a>
-<strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</li>
-</ol>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">0. <a href="https://arxiv.org/abs/2502.04056" rel="nofollow">TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers</a> <a id="user-content-link0"></a>
-</h2><a id="user-content-0-tq-dit-efficient-time-aware-quantization-for-diffusion-transformers-" class="anchor" aria-label="Permalink: 0. TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers" href="#0-tq-dit-efficient-time-aware-quantization-for-diffusion-transformers-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.04056
-<strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
-<p><strong>Abstract:</strong> arXiv:2502.04056v1 Announce Type: new  Abstract: Diffusion transformers (DiTs) combine transformer architectures with diffusion models. However, their computational complexity imposes significant limitations on real-time applications and sustainability of AI systems. In this study, we aim to enhance the computational efficiency through model quantization, which represents the weights and activation values with lower precision. Multi-region quantization (MRQ) is introduced to address the asymmetric distribution of network values in DiT blocks by allocating two scaling parameters to sub-regions. Additionally, time-grouping quantization (TGQ) is proposed to reduce quantization error caused by temporal variation in activations. The experimental results show that the proposed algorithm achieves performance comparable to the original full-precision model with only a 0.29 increase in FID at W8A8. Furthermore, it outperforms other baselines at W6A6, thereby confirming its suitability for low-bit quantization. These results highlight the potential of our method to enable efficient real-time generative models.</p>
-<p><strong>Comment:</strong> 1
-<strong>Relevance:</strong> 10
-<strong>Novelty:</strong> 8</p>
 <hr>
 <hr>
 <div class="markdown-heading"><h2 class="heading-element">Paper selection prompt</h2><a id="user-content-paper-selection-prompt" class="anchor" aria-label="Permalink: Paper selection prompt" href="#paper-selection-prompt"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -40,8 +26,20 @@
 <li>Not relevant: Papers that primarily focus on the application of quantization in unrelated fields, or papers that only discuss simple, traditional quantization techniques without introducing new methodological advancements.</li>
 </ul>
 </li>
-</ol>
-<p>In suggesting papers to your friend, remember that he enjoys papers on statistical machine learning, and generative modeling in natural language processing.
+<li>Observing the Characteristics of large language model Activation Values
+<ul>
+<li>Relevant: Papers that identify specific characteristics of activation values in large language models like LLaMA at different positions like attention value, and use these findings to explore the impact of activation value distributions on inference results. Such research aims at improving or enhancing the performance of large language models based on these observations.</li>
+<li>Not relevant: Papers that focus on models that are not large language models or models not based on the Transformer architecture.</li>
+</ul>
+</li>
+<li>Improving the Efficiency of Large Language Model KVCaches
+<ul>
+<li>Relevant: Papers that enhance the efficiency of KVCaches in large language models, such as those focusing on compressing or pruning KVCaches to reduce memory and computational load during inference.</li>
+<li>Not relevant: Papers that focus on algorithms designed specifically for accelerating hardware integration.
+In suggesting papers to your friend, remember that he enjoys papers on statistical machine learning, and generative modeling in natural language processing.
 Your friend also likes learning about surprising empirical results in language models, as well as clever statistical tricks.
-He does not want to read papers that are about primarily applications of methods to specific domains.</p>
+He does not want to read papers that are about primarily applications of methods to specific domains.</li>
+</ul>
+</li>
+</ol>
 </div></div><div class="footer container-xl width-full p-responsive"><div class="position-relative flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between pt-4 pb-4 mt-6 f6 color-text-secondary border-top color-border-secondary text-center"><div class="footer-octicon d-lg-block mx-lg-4"><a title="LLIKKE/gpt_paper_assistant_ori" href="https://github.com/LLIKKE/gpt_paper_assistant_ori" target="_blank" rel="noreferrer noopener"><svg class="octicon octicon-mark-github gh-logo" width="36" height="36" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"></path></svg></a></div><span class="mt-2 d-block footprint"><span>powered by </span><a href="https://github.com/wranders/markdown-to-pages-action" target="_blank" rel="noreferrer noopener">markdown-to-pages-action</a></span></div></div></body></html>
