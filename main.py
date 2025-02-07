@@ -226,7 +226,7 @@ if __name__ == "__main__":
         openai_client = ZhipuAI(api_key=OAI_KEY)
     else:
         raise ValueError()
-    #openai_client = openai
+
     # load the author list
     with io.open("configs/authors.txt", "r") as fopen:
         author_names, author_ids = parse_authors(fopen.readlines())
@@ -235,35 +235,33 @@ if __name__ == "__main__":
     papers = list(get_papers_from_arxiv(config))
     # dump all papers for debugging
 
-    #all_authors = set()
-    #for paper in papers:
-    #    all_authors.update(set(paper.authors))
+    all_authors = set()
+    for paper in papers:
+        all_authors.update(set(paper.authors))
 
-    #if config["OUTPUT"].getboolean("debug_messages"):
-    #    print("Getting author info for " + str(len(all_authors)) + " authors")
+    if config["OUTPUT"].getboolean("debug_messages"):
+        print("Getting author info for " + str(len(all_authors)) + " authors")
 
-    #all_authors = get_authors(list(all_authors), S2_API_KEY) # 耗时
+    #all_authors = get_authors(list(all_authors), S2_API_KEY) # 耗时,得到作者id信息和对应hindx
 
-    #selected_papers, all_papers, sort_dict = filter_by_author(
+    # selected_papers首先根据作者来保留一部分论文到
+    #selected_papers, all_papers = filter_by_author(
     #    all_authors, papers, author_id_set, config
     #)
 
-    #paper_list = filter_papers_by_hindex(all_authors, papers, config)
     all_papers = {}
     selected_papers = {}
-    sort_dict = {}
     for paper in papers:
         all_papers[paper.arxiv_id] = paper
 
     # selected_papers 是根据作者选出来的论文
-    #
+
     filter_by_gpt(
         papers,
         config,
         openai_client,
         all_papers,
         selected_papers,
-        sort_dict,
     )
 
     #增加翻译成中文的模块
@@ -272,16 +270,8 @@ if __name__ == "__main__":
         print(f"Translating paper: {paper['title']}")
         paper['title_cn'] = translate_to_chinese_via_deepseek(paper['title'], openai_client,config)
         paper['abstract_cn'] = translate_to_chinese_via_deepseek(paper['abstract'], openai_client,config)
-    
 
     # sort the papers by relevance and novelty
-    keys = list(sort_dict.keys())
-    values = list(sort_dict.values())
-    sorted_keys = [keys[idx] for idx in argsort(values)[::-1]]
-    selected_papers = {key: selected_papers[key] for key in sorted_keys}
-    if config["OUTPUT"].getboolean("debug_messages"):
-        print(sort_dict)
-        print(selected_papers)
 
     # pick endpoints and push the summaries
     if True:

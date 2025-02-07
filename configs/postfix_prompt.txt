@@ -1,3 +1,3 @@
 Write the response in JSONL format with {ARXIVID, RELEVANCE} on each line, one for each paper.
 The ARXIVID should be the ArXiv ID.
-The RELEVANCE should be judged as either true or false. Return true if the paper is directly related to the specific criterion on the topic. Return false if the paper is irrelevant to any criterion or unrelated to the general interest area.
+The RELEVANCE should be judged as either true or false. Return false if the paper is irrelevant to any criterion or unrelated to the general interest area.

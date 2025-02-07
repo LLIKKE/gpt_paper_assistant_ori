@@ -20,7 +20,6 @@ def filter_by_author(all_authors, papers, author_targets, config):
     # filter and parse the papers
     selected_papers = {}  # pass to output
     all_papers = {}  # dict for later filtering
-    sort_dict = {}  # dict storing key and score
 
     # author based selection
     for paper in papers:
@@ -32,11 +31,8 @@ def filter_by_author(all_authors, papers, author_targets, config):
                         selected_papers[paper.arxiv_id] = {
                             **dataclasses.asdict(paper),
                         }
-                        sort_dict[paper.arxiv_id] = float(
-                            config["SELECTION"]["author_match_score"]
-                        )
                         break
-    return selected_papers, all_papers, sort_dict
+    return selected_papers, all_papers
 
 
 def filter_papers_by_hindex(all_authors, papers, config):
@@ -183,7 +179,7 @@ def run_on_batch(
 
 
 def filter_by_gpt(
-    paper_list, config, openai_client, all_papers, selected_papers, sort_dict
+    paper_list, config, openai_client, all_papers, selected_papers
 ):
     # deal with config parsing
     with open("configs/base_prompt.txt", "r") as f:
@@ -229,7 +225,6 @@ def filter_by_gpt(
                         **dataclasses.asdict(all_papers[jdict["ARXIVID"]]),
                         **jdict,
                     }
-                    sort_dict[jdict["ARXIVID"]] = jdict["RELEVANCE"]# + jdict["NOVELTY"]
                 scored_in_batch.append(
                     {
                         **dataclasses.asdict(all_papers[jdict["ARXIVID"]]),
@@ -305,7 +300,7 @@ if __name__ == "__main__":
     ]
     all_papers = {}
     paper_outputs = {}
-    sort_dict = {}
+
     total_cost = 0
     for batch in tqdm(papers):
         json_dicts, cost = run_on_batch(
@@ -319,7 +314,6 @@ if __name__ == "__main__":
                 **dataclasses.asdict(all_papers[jdict["ARXIVID"]]),
                 **jdict,
             }
-            sort_dict[jdict["ARXIVID"]] = jdict["RELEVANCE"]# + jdict["NOVELTY"]
 
         # sort the papers by relevance and novelty
     print("total cost:" + str(total_cost))
