@@ -50,8 +50,8 @@ def filter_papers_by_hindex(all_authors, papers, config):
                 max_h = max(
                     max_h, max([alias["hIndex"] for alias in all_authors[author]])
                 )
-        if max_h >= float(config["FILTERING"]["hcutoff"]):
-            paper_list.append(paper)
+        #if max_h >= float(config["FILTERING"]["hcutoff"]):
+        paper_list.append(paper)
     return paper_list
 
 

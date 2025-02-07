@@ -192,7 +192,7 @@ def get_papers_from_arxiv_rss_api(area: str, config: Optional[dict]) -> List[Pap
     # print(paper_list)
     # print(timestamp)
     # print(last_id)
-    intervals = 7
+    intervals = 3
     paper_list = []
     print("today paper", len(paper_list))
     if len(paper_list) == 0:  # 如果没有，则扩大范围
