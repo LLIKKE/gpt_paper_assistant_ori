@@ -1,11 +1,6 @@
- # this file goes into the prompt to tell the bot your interest areas. you can write down your interests in whatever format you want
- # they can be simple, like a one line description like
- 1. Shows new powerful test set contamination or membership inference methods for language models
- # or in the case of more general areas like `instruction-following`, you might want to give examples
- 2. New methodological improvements to RLHF or instruction-following which are specific fine-tuning steps that are taken to make language models better at following user instructions across a range of tasks.
-    - Relevant: papers that discuss specific methods like RLHF, or instruction-tuning datasets, improving these methods, or analyzing them. Usually these papers will explicitly mention RLHF, instruction-following or instruction-tuning.
-    - Not relevant: papers about adaptation to some task. Simply following instructions or inputs are not sufficient.
-
+ 1. New advancements in quantization techniques for large language models
+    - Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like rotation matrices is particularly relevant.
+    - Not relevant: Papers that primarily focus on the application of quantization in unrelated fields, or papers that only discuss simple, traditional quantization techniques without introducing new methodological advancements.
  2. Observing the Characteristics of large language model Activation Values
     - Relevant: Papers that identify specific characteristics of activation values in large language models like LLaMA at different positions like attention value, and use these findings to explore the impact of activation value distributions on inference results. Such research aims at improving or enhancing the performance of large language models based on these observations.
     - Not relevant: Papers that focus on models that are not large language models or models not based on the Transformer architecture.

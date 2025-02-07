@@ -254,14 +254,6 @@ if __name__ == "__main__":
     sort_dict = {}
     for paper in papers:
         all_papers[paper.arxiv_id] = paper
-        selected_papers[paper.arxiv_id] = paper
-        selected_papers[paper.arxiv_id] = {
-            **dataclasses.asdict(paper),
-            **{"COMMENT": "Author match"},
-        }
-        sort_dict[paper.arxiv_id] = float(
-            config["SELECTION"]["author_match_score"]
-        )
 
     # selected_papers 是根据作者选出来的论文
     #

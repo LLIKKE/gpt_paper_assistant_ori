@@ -1,12 +1,7 @@
  1. New advancements in quantization techniques for large language models
     - Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like rotation matrices is particularly relevant.
     - Not relevant: Papers that primarily focus on the application of quantization in unrelated fields, or papers that only discuss simple, traditional quantization techniques without introducing new methodological advancements.
- 2. Observing the Characteristics of large language model Activation Values
-    - Relevant: Papers that identify specific characteristics of activation values in large language models like LLaMA at different positions like attention value, and use these findings to explore the impact of activation value distributions on inference results. Such research aims at improving or enhancing the performance of large language models based on these observations.
-    - Not relevant: Papers that focus on models that are not large language models or models not based on the Transformer architecture.
- 3. Improving the Efficiency of Large Language Model KVCaches
-    - Relevant: Papers that enhance the efficiency of KVCaches in large language models, such as those focusing on compressing or pruning KVCaches to reduce memory and computational load during inference.
-    - Not relevant: Papers that focus on algorithms designed specifically for accelerating hardware integration.
+
  In suggesting papers to your friend, remember that he enjoys papers on statistical machine learning, and generative modeling in natural language processing.
  Your friend also likes learning about surprising empirical results in language models, as well as clever statistical tricks.
  He does not want to read papers that are about primarily applications of methods to specific domains.
