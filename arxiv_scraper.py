@@ -193,7 +193,7 @@ def get_papers_from_arxiv_rss_api(area: str, config: Optional[dict]) -> List[Pap
     # print(paper_list)
     # print(timestamp)
     # print(last_id)
-    intervals = 3
+    intervals = 7
     print("today paper", len(paper_list))
     if len(paper_list) == 0:  # 如果没有，则扩大范围
         logging.info(f"Attempting to fetch papers from API for {area}...")
