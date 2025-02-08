@@ -13,48 +13,16 @@
   document.documentElement.setAttribute('data-color-mode', mode);
   document.querySelector('.profile-color-modes-toggle').onclick = toggleMode;
 })();</script><div><div class="markdown-heading"><h1 class="heading-element">Personalized Daily Arxiv Papers 02/08/2025</h1><a id="user-content-personalized-daily-arxiv-papers-02082025" class="anchor" aria-label="Permalink: Personalized Daily Arxiv Papers 02/08/2025" href="#personalized-daily-arxiv-papers-02082025"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Total relevant papers: 2</p>
+<p>Total relevant papers: 0</p>
 <p>Paper selection prompt and criteria at the bottom</p>
 <p>Table of contents with paper titles:</p>
-<ol start="0">
-<li>
-<p><a href="#link0">TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers</a>
-<strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
-</li>
-<li>
-<p><a href="#link1">Probe-Free Low-Rank Activation Intervention</a>
-<strong>Authors:</strong> Chonghe Jiang, Bao Nguyen, Anthony Man-Cho So, Viet Anh Nguyen</p>
-</li>
-</ol>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">0. <a href="https://arxiv.org/abs/2502.04056" rel="nofollow">TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers</a> <a id="user-content-link0"></a>
-</h2><a id="user-content-0-tq-dit-efficient-time-aware-quantization-for-diffusion-transformers-" class="anchor" aria-label="Permalink: 0. TQ-DiT: Efficient Time-Aware Quantization for Diffusion Transformers" href="#0-tq-dit-efficient-time-aware-quantization-for-diffusion-transformers-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.04056
-<strong>Authors:</strong> Younghye Hwang, Hyojin Lee, Joonhyuk Kang</p>
-<p><strong>Abstract:</strong> arXiv:2502.04056v1 Announce Type: new  Abstract: Diffusion transformers (DiTs) combine transformer architectures with diffusion models. However, their computational complexity imposes significant limitations on real-time applications and sustainability of AI systems. In this study, we aim to enhance the computational efficiency through model quantization, which represents the weights and activation values with lower precision. Multi-region quantization (MRQ) is introduced to address the asymmetric distribution of network values in DiT blocks by allocating two scaling parameters to sub-regions. Additionally, time-grouping quantization (TGQ) is proposed to reduce quantization error caused by temporal variation in activations. The experimental results show that the proposed algorithm achieves performance comparable to the original full-precision model with only a 0.29 increase in FID at W8A8. Furthermore, it outperforms other baselines at W6A6, thereby confirming its suitability for low-bit quantization. These results highlight the potential of our method to enable efficient real-time generative models.</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">1. <a href="https://arxiv.org/abs/2502.04043" rel="nofollow">Probe-Free Low-Rank Activation Intervention</a> <a id="user-content-link1"></a>
-</h2><a id="user-content-1-probe-free-low-rank-activation-intervention-" class="anchor" aria-label="Permalink: 1. Probe-Free Low-Rank Activation Intervention" href="#1-probe-free-low-rank-activation-intervention-"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>ArXiv ID:</strong> 2502.04043
-<strong>Authors:</strong> Chonghe Jiang, Bao Nguyen, Anthony Man-Cho So, Viet Anh Nguyen</p>
-<p><strong>Abstract:</strong> arXiv:2502.04043v1 Announce Type: new  Abstract: Language models (LMs) can produce texts that appear accurate and coherent but contain untruthful or toxic content. Inference-time interventions that edit the hidden activations have shown promising results in steering the LMs towards desirable generations. Existing activation intervention methods often comprise an activation probe to detect undesirable generation, triggering the activation modification to steer subsequent generation. This paper proposes a probe-free intervention method FLORAIN for all attention heads in a specific activation layer. It eliminates the need to train classifiers for probing purposes. The intervention function is parametrized by a sample-wise nonlinear low-rank mapping, which is trained by minimizing the distance between the modified activations and their projection onto the manifold of desirable content. Under specific constructions of the manifold and projection distance, we show that the intervention strategy can be computed efficiently by solving a smooth optimization problem. The empirical results, benchmarked on multiple base models, demonstrate that FLORAIN consistently outperforms several baseline methods in enhancing model truthfulness and quality across generation and multiple-choice tasks.</p>
 <hr>
 <hr>
 <div class="markdown-heading"><h2 class="heading-element">Paper selection prompt</h2><a id="user-content-paper-selection-prompt" class="anchor" aria-label="Permalink: Paper selection prompt" href="#paper-selection-prompt"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>New advancements in quantization techniques for large language models
+<li>Quantization, Pruning, and KVCache Compression for Efficient Large Language Models
 <ul>
-<li>Relevant: Papers that introduce novel methods for quantizing large language models, especially those focusing on reducing model size or computational requirements without sacrificing performance. This can include methods such as low-bit quantization, quantization-aware training, and optimizations that maintain or improve the model's efficiency and performance. Research that combines quantization with techniques like rotation matrices is particularly relevant.</li>
-</ul>
-</li>
-<li>Observing the Characteristics of large language model Activation Values
-<ul>
-<li>Relevant: Papers that identify specific characteristics of activation values in large language models like LLaMA at different positions like attention value, and use these findings to explore the impact of activation value distributions on inference results. Such research aims at improving or enhancing the performance of large language models based on these observations.</li>
-</ul>
-</li>
-<li>Improving the Efficiency of Large Language Model KVCaches
-<ul>
-<li>Relevant: Papers that enhance the efficiency of KVCaches in large language models, such as those focusing on compressing or pruning KVCaches to reduce memory and computational load during inference.
+<li>Relevant: To optimize large language models (LLMs) for reduced memory and computational costs while maintaining performance, this research direction integrates quantization, pruning, and KVCache compression into a unified framework.
 In suggesting papers to your friend, remember that he enjoys papers on large language model (llm) compression, inference acceleration techniques, and related algorithms such as quantization and pruning. He is particularly interested in research that explores new methods for reducing large language model size and improving inference speed, as well as innovative approaches to optimizing large language model.</li>
 </ul>
 </li>
