@@ -2,7 +2,7 @@ name: Run daily arxiv
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # 北京时间比UTC块8小时
+    - cron: '0 20 * * *'  # 北京时间比UTC块8小时
   workflow_dispatch:
   
 
